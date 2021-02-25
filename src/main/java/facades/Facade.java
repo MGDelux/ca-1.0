@@ -36,7 +36,6 @@ public class Facade {
         }
         return instance;
     }
-
     private EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
