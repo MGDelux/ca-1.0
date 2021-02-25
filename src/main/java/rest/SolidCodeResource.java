@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import dtos.SolidCodeDTO;
 import utils.EMF_Creator;
-import facades.FacadeExample;
+import facades.Facade;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.ws.rs.GET;
@@ -18,7 +18,7 @@ public class SolidCodeResource {
 
     private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
        
-    private static final FacadeExample FACADE =  FacadeExample.getFacade(EMF);
+    private static final Facade FACADE =  Facade.getFacade(EMF);
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
             
     @GET

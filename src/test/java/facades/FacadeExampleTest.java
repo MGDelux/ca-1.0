@@ -1,5 +1,6 @@
 package facades;
 
+import entities.Joke;
 import utils.EMF_Creator;
 import entities.SolidCode;
 import javax.persistence.EntityManager;
@@ -16,7 +17,7 @@ import org.junit.jupiter.api.Test;
 public class FacadeExampleTest {
 
     private static EntityManagerFactory emf;
-    private static FacadeExample facade;
+    private static Facade facade;
 
     public FacadeExampleTest() {
     }
@@ -24,7 +25,7 @@ public class FacadeExampleTest {
     @BeforeAll
     public static void setUpClass() {
        emf = EMF_Creator.createEntityManagerFactoryForTest();
-       facade = FacadeExample.getFacade(emf);
+       facade = Facade.getFacade(emf);
     }
 
     @AfterAll
@@ -40,8 +41,16 @@ public class FacadeExampleTest {
         try {
             em.getTransaction().begin();
             em.createNamedQuery("SolidCode.deleteAllRows").executeUpdate();
-            em.persist(new SolidCode("Some txt", "More text","setup1"));
-            em.persist(new SolidCode("aaa", "bbb","setup2"));
+            em.createNamedQuery("Joke.deleteAllRows").executeUpdate();
+            em.persist(new SolidCode("Mathias", "cph-mct123","Game Of Thrones"));
+            em.persist(new SolidCode("Emil", "cph-ew45","Prison Break"));
+            em.persist(new SolidCode("Søren", "cph-sa343","Broklynn Nine-Nine"));
+            em.persist(new Joke("Hvad laver edderkoppen når den keder sig?","Den går på nettet"));
+            em.persist(new Joke("Så hvordan kan får bedste lide at kommunikere?","Via mæææææææils."));
+            em.persist(new Joke("Hvad hedder verdens fattigste konge?"," Kong Kurs"));
+            em.persist(new Joke("Hvad sagde den ene skilt til den anden? Er du gift?","Nej, jeg er skilt!"));
+            em.persist(new Joke("Hvor mange programmerere skal der til for at skifte en pære?","ingen, det er et hardwareproblem"));
+
 
             em.getTransaction().commit();
         } finally {
@@ -57,7 +66,7 @@ public class FacadeExampleTest {
     // TODO: Delete or change this method 
     @Test
     public void testAFacadeMethod() {
-        assertEquals(2, facade.getRenameMeCount(), "Expects two rows in the database");
+        assertEquals(3, facade.getRenameMeCount(), "Expects two rows in the database");
     }
     
 

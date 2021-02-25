@@ -26,7 +26,7 @@ public class RenameMeResourceTest {
 
     private static final int SERVER_PORT = 7777;
     private static final String SERVER_URL = "http://localhost/api";
-    private static SolidCode r1, r2;
+    private static SolidCode r1, r2, r3;
 
     static final URI BASE_URI = UriBuilder.fromUri(SERVER_URL).port(SERVER_PORT).build();
     private static HttpServer httpServer;
@@ -64,13 +64,16 @@ public class RenameMeResourceTest {
     @BeforeEach
     public void setUp() {
         EntityManager em = emf.createEntityManager();
-        r1 = new SolidCode("Some txt", "More text","?=");
-        r2 = new SolidCode("aaa", "bbb","=??????");
+      
+        r1 = new SolidCode("Mathias", "cph-mct123","Game Of Thrones");
+        r2 =   new SolidCode("Emil", "cph-ew45","Prison Break");
+        r3 =  new SolidCode("Søren", "cph-sa343","Broklynn Nine-Nine");
         try {
             em.getTransaction().begin();
             em.createNamedQuery("SolidCode.deleteAllRows").executeUpdate();
             em.persist(r1);
             em.persist(r2);
+            em.persist(r3);
             em.getTransaction().commit();
         } finally {
             em.close();
@@ -101,6 +104,6 @@ public class RenameMeResourceTest {
                 .get("/SolidCode/count").then()
                 .assertThat()
                 .statusCode(HttpStatus.OK_200.getStatusCode())
-                .body("count", equalTo(2));
+                .body("count", equalTo(3));
     }
 }
