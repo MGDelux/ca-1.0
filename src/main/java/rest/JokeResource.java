@@ -8,7 +8,7 @@ package rest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import dtos.JokeDTO;
-import facades.Facade;
+import facades.Facadexxxxxxxxxxx;
 import java.util.List;
 import java.util.Random;
 import javax.persistence.EntityManagerFactory;
@@ -27,7 +27,7 @@ import utils.EMF_Creator;
 public class JokeResource {
     private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
        
-    private static final Facade FACADE =  Facade.getFacade(EMF);
+    private static final Facadexxxxxxxxxxx FACADE =  Facadexxxxxxxxxxx.getFacade(EMF);
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     
  

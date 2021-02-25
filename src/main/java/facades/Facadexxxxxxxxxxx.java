@@ -15,13 +15,13 @@ import utils.EMF_Creator;
  *
  * Rename Class to a relevant name Add add relevant facade methods
  */
-public class Facade {
+public class Facadexxxxxxxxxxx {
 
-    private static Facade instance;
+    private static Facadexxxxxxxxxxx instance;
     private static EntityManagerFactory emf;
     
     //Private Constructor to ensure Singleton
-    private Facade() {}
+    private Facadexxxxxxxxxxx() {}
     
     
     /**
@@ -29,10 +29,10 @@ public class Facade {
      * @param _emf
      * @return an instance of this facade class.
      */
-    public static Facade getFacade(EntityManagerFactory _emf) {
+    public static Facadexxxxxxxxxxx getFacade(EntityManagerFactory _emf) {
         if (instance == null) {
             emf = _emf;
-            instance = new Facade();
+            instance = new Facadexxxxxxxxxxx();
         }
         return instance;
     }
@@ -108,7 +108,7 @@ public class Facade {
     
     public static void main(String[] args) {
         emf = EMF_Creator.createEntityManagerFactory();
-        Facade fe = getFacade(emf);
+        Facadexxxxxxxxxxx fe = getFacade(emf);
         fe.getAll().forEach(dto->System.out.println(dto));
     }
 
