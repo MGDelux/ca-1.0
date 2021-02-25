@@ -107,3 +107,22 @@
             document.getElementById("All_row").innerHTML += "<ul>" + HTML + "</ul>";
         };
     }
+    
+    function GetAllCars(){
+        fetch("/ca-1/api/cars/all").then( res => res.json()).then(data =>{
+        console.log("Cars: ",data);
+        let cars = data;
+        let table = document.getElementById('table');
+        for(i = 0; i < cars.length; i++ ){
+                var row = `<tr> 
+                        <td>${cars[i].id}</td> 
+                        <td>${cars[i].make}</td> 
+                        <td>${cars[i].model}</td>
+                        <td>${cars[i].year}</td>
+                        <td>${cars[i].price}</td>
+                        <td>${cars[i].owner}</td>
+                         </tr>`;
+            table.innerHTML += row;
+        };
+    });
+    }
