@@ -17,7 +17,7 @@ import utils.EMF_Creator;
 public class Populator {
     public static void populate(){
         EntityManagerFactory emf = EMF_Creator.createEntityManagerFactory();
-        Facadexxxxxxxxxxx fe = Facadexxxxxxxxxxx.getFacade(emf);
+        Facade fe = Facade.getFacade(emf);
         fe.create(new SolidCodeDTO(new SolidCode("First 1", "Last 1","xc")));
         fe.create(new SolidCodeDTO(new SolidCode("First 2", "Last 2","x")));
         fe.create(new SolidCodeDTO(new SolidCode("First 3", "Last 3","xd")));
