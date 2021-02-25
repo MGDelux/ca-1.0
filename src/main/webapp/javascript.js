@@ -108,7 +108,7 @@
         };
     }
     
-    function GetAllCars(){
+    function getAllCars(){
         fetch("/ca-1/api/cars/all").then( res => res.json()).then(data =>{
         console.log("Cars: ",data);
         let cars = data;
