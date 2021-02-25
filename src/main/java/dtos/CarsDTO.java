@@ -3,43 +3,49 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entities;
+package dtos;
 
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
+import entities.CarsEntity;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
- * @author zarpy
+ * @author mathi
  */
-@Entity
-@NamedQuery(name = "CarsEntity.deleteAllRows", query = "DELETE from CarsEntity")
-
-public class CarsEntity implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class CarsDTO {
+     private Long id;
     private String make;
     private String model;
     private int year;
     private int price;
     private String owner;
 
-    public CarsEntity(){        
-    }
     
-    public CarsEntity(String make, String model, int year, int price, String owner) {
+    
+    
+      public static List<CarsDTO> getDtos(List<CarsEntity> rms){
+        List<CarsDTO> rmdtos = new ArrayList();
+        rms.forEach(rm->rmdtos.add(new CarsDTO(rm)));
+        return rmdtos;
+    }
+
+    public CarsDTO(Long id, String make, String model, int year, int price, String owner) {
+        this.id = id;
         this.make = make;
         this.model = model;
         this.year = year;
         this.price = price;
         this.owner = owner;
+    }
+
+    public CarsDTO(CarsEntity cars) {
+          this.id = cars.getId();
+        this.make = cars.getMake();
+        this.model =  cars.getModel();
+        this.year =  cars.getYear();
+        this.price = cars.getPrice();
+        this.owner = cars.getOwner();
     }
 
     public Long getId() {
@@ -92,11 +98,9 @@ public class CarsEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "CarsEntity{" + "id=" + id + ", make=" + make + ", model=" + model + ", year=" + year + ", price=" + price + ", owner=" + owner + '}';
+        return "CarsDTO{" + "id=" + id + ", make=" + make + ", model=" + model + ", year=" + year + ", price=" + price + ", owner=" + owner + '}';
     }
-    
-    
-
- 
-    
+      
+      
+      
 }

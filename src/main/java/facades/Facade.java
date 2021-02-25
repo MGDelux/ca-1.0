@@ -1,7 +1,8 @@
 package facades;
-
+import dtos.CarsDTO;
 import dtos.JokeDTO;
 import dtos.SolidCodeDTO;
+import entities.CarsEntity;
 import entities.Joke;
 import entities.SolidCode;
 import java.util.List;
@@ -97,7 +98,12 @@ public class Facade {
        }
                
        
-       
+         public List<CarsDTO> getAllCars(){
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<CarsEntity> query = em.createQuery("SELECT c FROM CarsEntity c", CarsEntity.class);
+        List<CarsEntity> rms = query.getResultList();
+        return CarsDTO.getDtos(rms);
+    }
        
     public List<SolidCodeDTO> getAll(){
         EntityManager em = emf.createEntityManager();

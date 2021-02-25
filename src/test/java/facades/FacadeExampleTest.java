@@ -1,5 +1,6 @@
 package facades;
 
+import entities.CarsEntity;
 import entities.Joke;
 import utils.EMF_Creator;
 import entities.SolidCode;
@@ -50,6 +51,10 @@ public class FacadeExampleTest {
             em.persist(new Joke("Hvad hedder verdens fattigste konge?"," Kong Kurs"));
             em.persist(new Joke("Hvad sagde den ene skilt til den anden? Er du gift?","Nej, jeg er skilt!"));
             em.persist(new Joke("Hvor mange programmerere skal der til for at skifte en pære?","ingen, det er et hardwareproblem"));
+            em.persist(new CarsEntity("Volvo","XE60",1996,250000,"Emil"));
+            em.persist(new CarsEntity("Hyundai","i10",2021,170000,"Mathias"));
+            em.persist(new CarsEntity("BMW","IX3",2019,570000,"Søren"));
+            
 
 
             em.getTransaction().commit();
