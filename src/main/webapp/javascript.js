@@ -47,6 +47,12 @@
                 div.removeChild(div.firstChild); 
             } 
         } 
+        function clearTable() { 
+            var rowCount = table.rows.length;
+        for (var i = rowCount - 1; i > 0; i--) {
+            table.deleteRow(i);
+        }
+    }
 
     function RemoveBoy() {
     if(document.getElementById("Remove_first").checked){
@@ -113,6 +119,7 @@
         console.log("Cars: ",data);
         let cars = data;
         let table = document.getElementById('table');
+        clearTable();
         for(i = 0; i < cars.length; i++ ){
                 var row = `<tr> 
                         <td>${cars[i].id}</td> 
@@ -126,3 +133,46 @@
         };
     });
     }
+    
+    function filter_year(){
+    fetch("/ca-1/api/cars/all").then( res => res.json()).then(data =>{
+    let cars = data;
+    let value = document.getElementById("number_year").value;
+    let newCar = cars.filter((element) => element.year <= value);
+    clearTable();
+    for(i = 0; i < newCar.length; i++ ){
+        console.log(newCar);
+                var row = `<tr> 
+                        <td>${newCar[i].id}</td> 
+                        <td>${newCar[i].make}</td> 
+                        <td>${newCar[i].model}</td>
+                        <td>${newCar[i].year}</td>
+                        <td>${newCar[i].price}</td>
+                        <td>${newCar[i].owner}</td>
+                         </tr>`;
+            table.innerHTML += row;
+        };
+    });
+    }
+
+     function filter_price(){
+    fetch("/ca-1/api/cars/all").then( res => res.json()).then(data =>{
+    let cars = data;
+    let value = document.getElementById("number_price").value;
+    let newCar = cars.filter((element) => element.price <= value);
+    clearTable();
+    for(i = 0; i < newCar.length; i++ ){
+        console.log(newCar);
+                var row = `<tr> 
+                        <td>${newCar[i].id}</td> 
+                        <td>${newCar[i].make}</td> 
+                        <td>${newCar[i].model}</td>
+                        <td>${newCar[i].year}</td>
+                        <td>${newCar[i].price}</td>
+                        <td>${newCar[i].owner}</td>
+                         </tr>`;
+            table.innerHTML += row;
+        };
+    });
+    }
+    
